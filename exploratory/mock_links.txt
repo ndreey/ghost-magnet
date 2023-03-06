@@ -3,7 +3,8 @@ https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_
 https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_2_reads.tar.gz
 https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_3_reads.tar.gz
 https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_4_reads.tar.gz
-https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_1_reads.tar.gz
-https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_1_reads.tar.gz
-https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_1_reads.tar.gz
-https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_1_reads.tar.gz
+https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_5_reads.tar.gz
+https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_6_reads.tar.gz
+https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_7_reads.tar.gz
+https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_8_reads.tar.gz
+https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_9_reads.tar.gz

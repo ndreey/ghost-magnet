@@ -8,9 +8,49 @@ wget --directory-prefix=<path> <link>
 # I can unzip and unpack using
 tar -zxvf <filename.tar.gz> -C <path>
 
+# This can all be turned into a script (get_mock.sh).
+# Instead of using mock_links.txt i can just have an placeholder in the link to get samples 0-9.
 
 
 
+# ----------Issue_2-----------
+#        Get Reference Data
 
+# Not needed as each sample comes with a .tsv file stating where each read derives from.
+
+
+
+# ----------Issue_3-----------
+#        Clean Mock Data
+
+# With unpack_mock.sh i unzip and unpack the .tar.gz file and place them in data/raw.
+
+# filter_thaliana.sh is a script that will read the mapping file, get the A. thaliana reads and then write "clean_data" skipping the
+# unwanted A. thaliana reads. The clean data is placed in the processed data.
+
+- #!/usr/bin/env bash: This line specifies the interpreter for the script to be the Bash shell.
+- The for loop iterates over all the directories in data/raw/simulation_short_read/ and performs the same set of operations for each directory.
+- echo statements are used to print out progress messages to the terminal.
+- The basename command extracts the last component of the directory path, which corresponds to the sample number.
+- mkdir is used to create a directory to hold the output files.
+- The input and output file paths are set using variables.
+- gunzip -c "$map" > reads_mapping.tsv is used to extract the mapping file in .tsv.gz format to a plain .tsv file.
+- awk command is used to filter out the reads that correspond to Arabidopsis thaliana, based on the taxonomic ID information in the mapping file.
+- The zcat command uncompresses the input Fastq file and pipes it to awk, which filters out reads corresponding to Arabidopsis thaliana.
+- The resulting filtered reads are written to the output file specified by filtered_fastq.
+- The intermediate file reads_mapping.tsv is deleted using the rm command.
+- Progress messages are printed to the terminal to indicate completion of the processing for each sample.
+
+# Three samples took ca 1 hour to run on my local pc.
+# According to the CAMI2 paper around 1% of all metagenomic data should be A. thaliana. I found that A. thaliana abundance for sample 1 was 0.66% by
+doing:
+- zcat data/raw/simulation_short_read/2019.09.27_13.59.10_sample_1/reads/reads_mapping.tsv.gz | wc -l
+  Output: 33197043
+-  wc -l data/processed/clean_sample_1/thaliana_reads.txt
+  Output: 218338 
+
+218338/33197043 = 0.006577
+
+This was similar to sample 2 and 3, thus indicating that filter_thaliana.sh seems to work!
 
 
