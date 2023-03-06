@@ -1,0 +1,9 @@
+https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_0_reads.tar.gz
+https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_1_reads.tar.gz
+https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_2_reads.tar.gz
+https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_3_reads.tar.gz
+https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_4_reads.tar.gz
+https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_1_reads.tar.gz
+https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_1_reads.tar.gz
+https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_1_reads.tar.gz
+https://frl.publisso.de/data/frl:6425521/plant_associated/short_read/rhimgCAMI2_sample_1_reads.tar.gz

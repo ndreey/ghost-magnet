@@ -1,3 +1,4 @@
 
 
 The A. Thaliana reference: GCF_000001735.4_TAIR10.1_genomic
+Taxid: 3702

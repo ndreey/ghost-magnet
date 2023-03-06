@@ -1,0 +1,16 @@
+
+# ----------Issue_1-----------
+#        Get Mock Data
+
+# I can automate the downloading of the mock sample files with wget.
+wget --directory-prefix=<path> <link>			
+
+# I can unzip and unpack using
+tar -zxvf <filename.tar.gz> -C <path>
+
+
+
+
+
+
+
