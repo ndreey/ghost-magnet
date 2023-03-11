@@ -54,3 +54,6 @@ doing:
 This was similar to sample 2 and 3, thus indicating that filter_thaliana.sh seems to work!
 
 
+# ----------Issue_-----------
+#        sdsd
+
