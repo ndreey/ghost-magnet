@@ -53,8 +53,8 @@ for (fasta_file in dir(fasta_dir, pattern = "\\.fasta$")) {
   if (length(matching_row) == 0) {
     # add taxid to fix_list and move to next iteration
     fix_list <- c(fix_list, taxid)
-    list_tax_group <- c(list_tax_group, "fix")
-    list_group <- c(list_group, "fix")
+    list_tax_group <- c(list_tax_group, 2)
+    list_group <- c(list_group, "not_euk")
     next
   }
   
@@ -83,19 +83,3 @@ for (fasta_file in dir(fasta_dir, pattern = "\\.fasta$")) {
 df <- data.frame(genome_id = list_genome_id, size = list_size, 
                  taxid = list_taxid, tax_group = list_tax_group, 
                  group = list_group)
-
-
-# Find rows where group is "fix"
-fix_rows <- which(df$group == "fix")
-
-# Loop over rows and prompt for tax group
-for (i in fix_rows) {
-  taxid <- df$taxid[i]
-  tax_group <- df$tax_group[i]
-  new_group <- readline(paste0("Taxid ", taxid, " currently has group ", 
-                               tax_group, ". What should the new group be? "))
-  
-  # Replace "fix" with new group
-  df$tax_group[i] <- new_group
-  df$group[i] <- ifelse(new_group == 2759, "euk", "not_euk")
-}
