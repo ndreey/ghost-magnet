@@ -5,20 +5,24 @@ list_NCBI <- vector()
 list_tax_group <- vector()
 list_group <- vector()
 
-# Set directory containing fasta files
+# Path for the directory containing the genomes
 fasta_dir <- "data/references/genomes/source_genomes/"
 
 # Read mapping file to get genome IDs
-genome_to_id <- read.table("genome_to_id.txt", header = TRUE, sep = "\t")
+genome_to_id <- read.table("camisim_setup_files/genome_to_id.tsv", 
+                           header = FALSE, sep = "\t")
 
 # Read report file to get genome sizes
-report_genome <- read.table("report_genome.txt", header = TRUE, sep = "\t")
+genome_size <- read.table("camisim_setup_files/report_genome_sizes.tsv",
+                            header = TRUE, sep = "\t")
 
 # Read metadata file to get NCBI IDs
-metadata <- read.table("metadata.tsv", header = TRUE, sep = "\t")
+metadata <- read.table("camisim_setup_files/metadata.tsv",
+                       header = TRUE, sep = "\t")
 
 # Read taxonomic profile file to get taxonomic group IDs
-taxonomic_profile <- read.table("taxonomic_profile.tsv", header = TRUE, sep = "\t")
+taxonomic_profile <- read.table("camisim_setup_files/taxonomic_profile_1.txt", 
+                                header = TRUE, sep = "\t")
 
 # Loop over fasta files in the directory
 for (fasta_file in dir(fasta_dir, pattern = "\\.fasta$")) {
