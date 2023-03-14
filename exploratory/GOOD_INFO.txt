@@ -51,46 +51,29 @@ the accumulative abundances of bacteria become 30%. Vice versa for Eukaryota.
 - I think i will group viruses, archaea, bacteria and the unidentified together (not_euk) and run eukaryote separate (euk).
   Thus i can set not_euk group to 30% and euk to 70%
 
-genome_id	size	taxid	tax_group	group
+
+Tulasnella calospora UAMH 9824 v1.0: Project 1140011 masked assmebly from MycoCosmo.
+	- https://mycocosm.jgi.doe.gov/Tulcal1/Tulcal1.info.html
+	- Check if i can work with this data. (Seems like i can as 2 years has passed since completion.
+
+Ceratobasidium sp. anastomosis group I; DN8442 v1.0: Project: 1019533 masked assembly from MycoCosmo
+	- https://mycocosm.jgi.doe.gov/CerAGI/CerAGI.info.html
+	- In Miyauchi 2020 Myccorhizal genomes Nature summplementary info excel
+
+Rhizoctonia_GCF_016906535.1_ASM1690653v1_genomic.fna was downloaded 
+	- https://www.ncbi.nlm.nih.gov/assembly/GCA_016906535.1#/def
+	- 275x coverage
+
+
+Rhizoctonia solani AG-8 WAC10335: Rhisola1_AssemblyScaffolds_Repeatmasked.fasta.gz
+	- https://mycocosm.jgi.doe.gov/Rhisola1/Rhisola1.info.html
+	- JGI, 1000x coverage
 
 
 
 
-list_genome_id = []
-list_size = []
-list_NCBI = []
-list_tax_group = []
-list_group = []
 
-for *.fasta in source_genomes/:
-	
-	# Get genome_id
-	match genome_id with *.fasta filename using genome_to_id.txt
-	add genome_id to list_genome_id
 
-	# Get size	
-	match size with *.fasta filename using report_genome.txt
-	add size to list_size
-	
-	# Get taxid
-	match NCBI_ID with genome_id using metadata.tsv
-	add NCBI_ID to list_NCBI
-	
-	# Get taxonomy group id
-	match tax_group with NCBI_ID using taxonomic_profile.tsv
-		in $TAXPATH get first number ^[0-9]|      # 2|1239|186801   --> 2
-	add tax_group to list_tax_group
-	
-	# Get humanized group name
-	match tax_group with group using if
-	if tax_group != 2759:
-		group = "not_euk"
-	else:
-		group = "euk"
-	add group to list_group
-
-	# Create dataframe
-	df <- data.frame(genome_id = list_genome_id, size=, taxid=, tax_group=, group=)
 
 
 	
