@@ -35,12 +35,62 @@ I15_PBB_10_1.fq.gz
 @Ranks:superkingdom|phylum|class|order|family|genus|species|strain
 
 @@TAXID	RANK	TAXPATH	TAXPATHSN	PERCENTAGE	_CAMI_genomeID	_CAMI_OTU
-2157	superkingdom	2157	Archaea	0.0000		
-10239	superkingdom	10239	Viruses	3.3206		
-2	superkingdom	2	Bacteria	41.3295		
-2759	superkingdom	2759	Eukaryota	0.4049		
-
+2157	superkingdom	2157	Archaea			
+10239	superkingdom	10239	Viruses			
+2	superkingdom	2	Bacteria			
+2759	superkingdom	2759	Eukaryota			
+32644				unidentified
+45202				unidentified plasmid
+1214906			unidentified virus	
+	
 I can use the TAXID of the kingdowms to filter bacteria from eukaryota etc.
 Should be able to create a script than can distribute different abundances.
 Say i give bacteria 30% abundance. Then script should distribute the abundances so that 
 the accumulative abundances of bacteria become 30%. Vice versa for Eukaryota.
+
+- I think i will group viruses, archaea, bacteria and the unidentified together (not_euk) and run eukaryote separate (euk).
+  Thus i can set not_euk group to 30% and euk to 70%
+
+genome_id	size	taxid	tax_group	group
+
+
+
+
+list_genome_id = []
+list_size = []
+list_NCBI = []
+list_tax_group = []
+list_group = []
+
+for *.fasta in source_genomes/:
+	
+	# Get genome_id
+	match genome_id with *.fasta filename using genome_to_id.txt
+	add genome_id to list_genome_id
+
+	# Get size	
+	match size with *.fasta filename using report_genome.txt
+	add size to list_size
+	
+	# Get taxid
+	match NCBI_ID with genome_id using metadata.tsv
+	add NCBI_ID to list_NCBI
+	
+	# Get taxonomy group id
+	match tax_group with NCBI_ID using taxonomic_profile.tsv
+		in $TAXPATH get first number ^[0-9]|      # 2|1239|186801   --> 2
+	add tax_group to list_tax_group
+	
+	# Get humanized group name
+	match tax_group with group using if
+	if tax_group != 2759:
+		group = "not_euk"
+	else:
+		group = "euk"
+	add group to list_group
+
+	# Create dataframe
+	df <- data.frame(genome_id = list_genome_id, size=, taxid=, tax_group=, group=)
+
+
+	
