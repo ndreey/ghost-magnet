@@ -53,3 +53,6 @@ Talaromyces_verruculosus_MPI-SP2-AT-0411
 Truncatella_angustata_MPI-SW4-AT-0541
 Umbelopsis_autotrophica_MPI-SW4-AT-0611
 Verticillium_dahliae_MPI-FR1-AT-0353
+Ceratobasidium_sp_CerAGI
+Rhizoctonia_solani_Rhisola1
+Tullasnella_calospora_Tulcal1

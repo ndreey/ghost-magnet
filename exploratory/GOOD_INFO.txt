@@ -71,9 +71,12 @@ Rhizoctonia solani AG-8 WAC10335: Rhisola1_AssemblyScaffolds_Repeatmasked.fasta.
 
 
 
-
-
-
+Other orchid mycorrhizae that can be added:
+	- Paper	(https://www.frontiersin.org/articles/10.3389/fpls.2021.646325/full)
+	- Sebacina vermifera https://mycocosm.jgi.doe.gov/Sebvebe1/Sebvebe1.info.html
+	- Serendipita sp. 405 https://mycocosm.jgi.doe.gov/Ser405_1/Ser405_1.home.html
+	- Serendipita sp. 400 https://mycocosm.jgi.doe.gov/Ser400_1/Ser400_1.home.html
+	- Serendipita sp. 411 https://mycocosm.jgi.doe.gov/Ser411_1/Ser411_1.home.html
 
 
 	
