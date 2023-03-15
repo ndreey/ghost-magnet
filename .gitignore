@@ -1,3 +1,6 @@
 data/
 .Rproj.user
 01_clean_mock_data.Rproj
+code/get_tax.R
+.Rhistory
+code/make_df.R
