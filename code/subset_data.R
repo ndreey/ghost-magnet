@@ -57,7 +57,7 @@ df_plasmids <- plasmids[!(plasmids$genome_id %in% plasmid_subset),]
 df_plasmids$genome_id <- gsub(".fasta", "", df_plasmids$genome_id)
 
 
-
+# Correction: reference.tsv hold both bacterial and archaea!
 ######################## BACTERIAL GENOMES ###############################
 # I want to subset 35 genomes from the ~440 bacterial genomes 
 # 
@@ -97,8 +97,30 @@ df_bacteria$genome_id <- bact_ids
 df_bacteria$rank <- rep("bacteria", 35)
 df_bacteria <- df_bacteria[, c("genome_id", "taxid", "rank")]
 
-###
-###   CHECK IF THIS IS TRULY 100% BACTERIA, CAN BE ARCHAEA AS WELL
-###
+###                                                                 ###
+###   CHECK IF THIS IS TRULY 100% BACTERIA, CAN BE ARCHAEA AS WELL  ###
+###                                                                 ###
+
+# taxonomic profile file to get taxonomic group IDs
+taxonomic_profile <- read.table("camisim_setup_files/taxonomic_profile_1.txt", 
+                                header = FALSE, sep = "\t", skip = 5)
+
+# Lets see if the taxid matches any taxid where the row has "Archaea"
+for (taxid in df_bacteria$taxid) {
+  get_match <- grep(taxid,taxonomic_profile$V1[grep("Archaea",
+                                                    taxonomic_profile$V4)])
+  
+  # When grep find nothing it returns interger(0). Thus, any value where length
+  # is not 0 means that there has been a match
+  if (length(get_match) != 0) {
+    cat("Taxid:", taxid, "is Archaea")
+  }
+}
+
+# Taxid: 456442 is Archaea
+# Thus, reference.tsv holds bacteria and archaea.
+# Replace the rank value with archaea.
+df_bacteria$rank <- ifelse(df_bacteria$taxid == 456442, "archaea",
+                           df_bacteria$rank)
 
 
