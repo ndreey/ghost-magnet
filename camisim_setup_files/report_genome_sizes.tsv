@@ -327,6 +327,7 @@ genome	size
 987045.PRJNA63165.fasta	5585780
 Alternaria_tenuis_MPI-SDFR-AT-0071.contigs.fasta	34443718
 Aspergillus_fumigatus_MPI-SW4-AT-0569.contigs.fasta	47521149
+Ceratobasidium_sp_CerAGI.fasta	58444101
 Chlamy107.fasta	6491898
 Chlamy109.fasta	6080660
 Chlamy119.fasta	6237157
@@ -375,7 +376,6 @@ Fusarium_oxysporum_MPI-PUGE-AT-0057.contigs.fasta	59071048
 Fusarium_oxysporum_MPI-SP2-AT-0407.contigs.fasta	52105426
 Fusarium_redolens_MPI-CAGE-CH-0216.contigs.fasta	55076993
 Fusarium_torulosum_MPI-SDFR-AT-0089.contigs.fasta	42850815
-GCF_000001735.4_TAIR10.1_genomic.fasta	119668634
 Gibellulopsis_nigrescens_MPI-SP2-AT-0410.contigs.fasta	35340245
 Hypocrea_atroviridis_MPI-SP2-AT-0434.contigs.fasta	39107378
 Ilyonectria_macrodidyma_MPI-GEGE-AT-0033.contigs.fasta	74816530
@@ -482,6 +482,7 @@ Phoma_radicina_MPI-SP2-AT-0466.contigs.fasta	38215437
 Phoma_selaginellicola_MPI-SW4-AT-0584.contigs.fasta	44198635
 Phomopsis_columnaris_MPI-SP2-AT-0504.contigs.fasta	88466628
 Phomopsis_columnaris_MPI-SW4-AT-0540.contigs.fasta	73756538
+Platanthera_zijinensis_chr.fasta	4186550321
 Plectosphaerella_cucumerina_MPI-FR1-AT-0340.contigs.fasta	39476090
 Plectosphaerella_cucumerina_MPI-SP2-AT-0421.contigs.fasta	39382239
 Plectosphaerella_cucumerina_MPI-SP2-AT-0455.contigs.fasta	37412521
@@ -885,11 +886,13 @@ RNODE_96_length_2623_cov_16.26144.fasta	26010
 RNODE_97_length_2902_cov_3.95799.fasta	28800
 RNODE_99_length_1369_cov_5.25687.fasta	13470
 RNODE_9_length_1992_cov_4.69492.fasta	19700
+Rhizoctonia_solani_Rhisola1.fasta	39822884
 Rhizopycnis_vagum_MPI-FR1-AT-0346.contigs.fasta	53344606
 Sarocladium_strictum_MPI-IT2-AT-0306.contigs.fasta	31483859
 Sarocladium_strictum_MPI-SWE4-AT-0554.contigs.fasta	34794780
 Sporobolomyces_sasicola_MPI-IT2-AT-0310.contigs.fasta	60772292
 Talaromyces_verruculosus_MPI-SP2-AT-0411.contigs.fasta	32407473
 Truncatella_angustata_MPI-SW4-AT-0541.contigs.fasta	58029377
+Tulasnella_calospora_Tulcal1.fasta	70372952
 Umbelopsis_autotrophica_MPI-SW4-AT-0611.contigs.fasta	27968122
 Verticillium_dahliae_MPI-FR1-AT-0353.contigs.fasta	36758448
