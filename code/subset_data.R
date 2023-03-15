@@ -1,8 +1,26 @@
 # Subset source_genomes from CAMI2 rhizosphere mock data
 #
 
+get_size <- function(genome_ids,size_report) {
+  
+  sizes <- vector()
+  for (id in genome_ids) {
+    
+    sizes <- c(sizes, size_report[grep(id, size_report$genome), 2])
+    
+  }
+  
+  return(sizes)
+}
+
+
 # set the seed for reproducibility
 set.seed(13371337)
+
+# report file holding sizes of genomes
+genome_size <- read.table("camisim_setup_files/report_genome_sizes.tsv",
+                          header = TRUE, sep = "\t")
+
 
 
 ######################## FUNGAL GENOMES ###############################
@@ -33,6 +51,10 @@ df_fungi <- rbind(df_fungi, omf_df)
 # Lets add "OMF" as rank to the omf_genomes and "fungi" to the remaing
 df_fungi$rank <- c(rep("fungi", 31), rep("OMF",3))
 
+# Add the genome sizes
+fungi_size <- get_size(df_fungi$genome_id, genome_size)
+df_fungi$size <- fungi_size
+
 
 
 ######################## PLASMID GENOMES ###############################
@@ -46,15 +68,20 @@ plasmids <- read.table("camisim_setup_files/plasmids.tsv",
 plasmids <- plasmids[,-3]
 colnames(plasmids) <- c("genome_id", "taxid", "rank")
 
-# We dont need 399 of these genomes. Lets reduce it. 399 - 349 = 50
+# We dont need 399 of these genomes. Lets reduce it. 399 - 349 = 30
 # Subsets 349 genomes randomly
-plasmid_subset <- sample(plasmids$genome_id, 349)
+plasmid_subset <- sample(plasmids$genome_id, 369)
 
 # Subsets the 50 plasmids
 df_plasmids <- plasmids[!(plasmids$genome_id %in% plasmid_subset),]
 
 # Remove the ".fasta" suffix
 df_plasmids$genome_id <- gsub(".fasta", "", df_plasmids$genome_id)
+
+# Add the genome sizes
+plasmid_size <- get_size(df_plasmids$genome_id, genome_size)
+df_plasmids$size <- plasmid_size
+
 
 
 # Correction: reference.tsv hold both bacterial and archaea!
@@ -78,6 +105,9 @@ bact_subset <- sample(reference[reference$category == "known_strain",]$ref, 35)
 # Subset to only keep the 35 chosen and remove third column as it is not needed.
 df_bacteria <- reference[(reference$ref %in% bact_subset),-3]
 
+# Add the genome sizes
+bact_size <- get_size(df_bacteria$ref, genome_size)
+
 # Sort out df to match the structure of the others.
 # Load file to get genome ids from ref
 genome_to_id <- read.table("camisim_setup_files/genome_to_id.tsv", 
@@ -96,10 +126,12 @@ for (ref in df_bacteria$ref) {
 df_bacteria$genome_id <- bact_ids
 df_bacteria$rank <- rep("bacteria", 35)
 df_bacteria <- df_bacteria[, c("genome_id", "taxid", "rank")]
+df_bacteria$size <- bact_size
 
-###                                                                 ###
-###   CHECK IF THIS IS TRULY 100% BACTERIA, CAN BE ARCHAEA AS WELL  ###
-###                                                                 ###
+
+###                                                                       ###
+###   CHECK IF REFERENCE SUBSET IS 100% BACTERIA, CAN BE ARCHAEA AS WELL  ###
+###                                                                       ###
 
 # taxonomic profile file to get taxonomic group IDs
 taxonomic_profile <- read.table("camisim_setup_files/taxonomic_profile_1.txt", 
@@ -122,5 +154,22 @@ for (taxid in df_bacteria$taxid) {
 # Replace the rank value with archaea.
 df_bacteria$rank <- ifelse(df_bacteria$taxid == 456442, "archaea",
                            df_bacteria$rank)
+
+
+######################## BUILD MOCK DATAFRAME ###################################
+
+# Host
+df_host <- data.frame(genome_id = "Platanthera_zijinensis_chr",
+                        taxid = 2320716, rank = "host", size = 4186550321)
+# Bind together the subsets
+mock_df <- rbind(df_host, df_fungi, df_bacteria, df_plasmids)
+
+# Create new rownames
+rownames(mock_df) <- NULL
+
+# Write to txt.
+write.table(mock_df, file = "mock_genomes.txt", sep = "\t", row.names = FALSE, 
+            col.names = TRUE)
+
 
 
