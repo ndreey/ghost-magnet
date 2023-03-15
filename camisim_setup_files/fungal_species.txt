@@ -1,5 +1,6 @@
 Alternaria_tenuis
 Aspergillus_fumigatus
+Ceratobasidium_sp
 Cladosporium_rectoides
 Cryptosporiopsis_ericae
 Cylindrocarpon_pauciseptatum
@@ -31,10 +32,12 @@ Phoma_selaginellicola
 Phomopsis_columnaris
 Plectosphaerella_cucumerina
 Pyrenochaeta_lycopersici
+Rhizoctonia_solani
 Rhizopycnis_vagum
 Sarocladium_strictum
 Sporobolomyces_sasicola
 Talaromyces_verruculosus
 Truncatella_angustata
+Tulasnella_calospora
 Umbelopsis_autotrophica
 Verticillium_dahliae
