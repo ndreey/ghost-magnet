@@ -738,7 +738,10 @@
 483011	species	2|1239|91061|186826|33958|1578|483011	Bacteria|Firmicutes|Bacilli|Lactobacillales|Lactobacillaceae|Lactobacillus|Lactobacillus fabifermentans	0.0000		
 511	species	2|1224|28216|80840|506|507|511	Bacteria|Proteobacteria|Betaproteobacteria|Burkholderiales|Alcaligenaceae|Alcaligenes|Alcaligenes faecalis	0.0000		
 1888	species	2|201174|1760|85011|2062|1883|1888	Bacteria|Actinobacteria|Actinobacteria|Streptomycetales|Streptomycetaceae|Streptomyces|Streptomyces albus	0.0000		
-3702	species	2759|35493||3699|3700|3701|3702	Eukaryota|Streptophyta||Brassicales|Brassicaceae|Arabidopsis|Arabidopsis thaliana	0.0161		
+2320716	species	2759|2320716	Eukaryota|Platanthera zijinensis	0.0161		
+156515	species	2759|156515	Eukaryota|Tulasnella calospora	0.0161		
+1287689	species	2759|1287689	Eukaryota|Rhizoctonia solani	0.0161		
+305860	species	2759|305860	Eukaryota|Ceratobasidium sp. AG-I	0.0161		
 5046	species	2759|4890|147550|5125||284134|5046	Eukaryota|Ascomycota|Sordariomycetes|Hypocreales||Sarocladium|Sarocladium strictum	0.0015		
 247032	species	2759|4890|147541|92860|28556|5598|247032	Eukaryota|Ascomycota|Dothideomycetes|Pleosporales|Pleosporaceae|Alternaria|Alternaria chlamydosporigena	0.0053		
 1304866	species	2|1239|186801|186802|31979|1485|1304866	Bacteria|Firmicutes|Clostridia|Clostridiales|Clostridiaceae|Clostridium|Clostridium sp. ASBs410	0.0000		
@@ -821,7 +824,6 @@
 1760.9	strain	2|201174|1760|||||1760.9	Bacteria|Actinobacteria|Actinobacteria|||||Actinobacteria strain	0.0000	Otu802	1760
 247032.2	strain	2759|4890|147541|92860|28556|5598|247032|247032.2	Eukaryota|Ascomycota|Dothideomycetes|Pleosporales|Pleosporaceae|Alternaria|Alternaria chlamydosporigena|Alternaria chlamydosporigena strain	0.0051	Embellisia_chlamydospora_MPI-FR1-AT-0336	247032
 247032.1	strain	2759|4890|147541|92860|28556|5598|247032|247032.1	Eukaryota|Ascomycota|Dothideomycetes|Pleosporales|Pleosporaceae|Alternaria|Alternaria chlamydosporigena|Alternaria chlamydosporigena strain	0.0002	Embellisia_chlamydospora_MPI-SP2-AT-0402	247032
-3702.1	strain	2759|35493||3699|3700|3701|3702|3702.1	Eukaryota|Streptophyta||Brassicales|Brassicaceae|Arabidopsis|Arabidopsis thaliana|Arabidopsis thaliana strain	0.0161	GCF_000001735.4_TAIR10.1_genomic	3702
 12916.5	strain	2|1224|28216|80840|80864|12916||12916.5	Bacteria|Proteobacteria|Betaproteobacteria|Burkholderiales|Comamonadaceae|Acidovorax||Acidovorax strain	0.0000	Otu723	12916
 32644.145	strain	||||||32644|32644.145	||||||unidentified|unidentified strain	0.0000	RNODE_153_length_2931_cov_9.80406	32644
 32644.144	strain	||||||32644|32644.144	||||||unidentified|unidentified strain	0.0112	RNODE_96_length_2623_cov_16.26144	32644

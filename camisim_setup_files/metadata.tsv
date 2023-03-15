@@ -471,7 +471,10 @@ Embellisia_chlamydospora_MPI-SP2-AT-0402	247032	247032	known_strain
 Plectosphaerella_cucumerina_MPI-SP2-AT-0421	40658	40658	known_strain
 Fusarium_falciforme_MPI-FR1-AT-0333	195108	195108	known_strain
 Phomopsis_columnaris_MPI-SW4-AT-0540	193000	193000	known_strain
-GCF_000001735.4_TAIR10.1_genomic	3702	3702	known_strain
+Ceratobasidium_sp_CerAGI	305860 	305860 	known_strain
+Rhizoctonia_solani_Rhisola1	1287689 	1287689 	known_strain
+Tulasnella_calospora_Tulcal1	156515 	156515 	known_strain
+Platanthera_zijinensis_chr	2320716	2320716	known_strain
 RNODE_416_length_1581_cov_3.82938	32644	32644	unknown
 RNODE_217_length_2598_cov_4.83502	32644	32644	unknown
 RNODE_138_length_6510_cov_13.48012	32644	32644	unknown
