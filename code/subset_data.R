@@ -110,20 +110,21 @@ bact_size <- get_size(df_bacteria$ref, genome_size)
 
 # Sort out df to match the structure of the others.
 # Load file to get genome ids from ref
-genome_to_id <- read.table("camisim_setup_files/genome_to_id.tsv", 
-                           header = FALSE, sep = "\t")
-colnames(genome_to_id) = c("genome_id", "path")
-
+#genome_to_id <- read.table("camisim_setup_files/genome_to_id.tsv", 
+#                           header = FALSE, sep = "\t")
+#colnames(genome_to_id) = c("genome_id", "path")
+#
 # Get the row where ref matches path in genome_to_id and add it to vector.
-bact_ids <- vector()
-
-for (ref in df_bacteria$ref) {
-  row_idx <- grep(ref, genome_to_id[,2])
-  bact_ids <- c(bact_ids, genome_to_id$genome_id[row_idx])
-}
+# bact_ids <- vector()
+#
+#for (ref in df_bacteria$ref) {
+#  row_idx <- grep(ref, genome_to_id[,2])
+#  bact_ids <- c(bact_ids, genome_to_id$genome_id[row_idx])
+#}
 
 # Structure dataframe to resemble the others.
-df_bacteria$genome_id <- bact_ids
+#df_bacteria$genome_id <- bact_ids
+df_bacteria$genome_id <- df_bacteria$ref
 df_bacteria$rank <- rep("bacteria", 35)
 df_bacteria <- df_bacteria[, c("genome_id", "taxid", "rank")]
 df_bacteria$size <- bact_size
