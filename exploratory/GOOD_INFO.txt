@@ -79,7 +79,7 @@ Other orchid mycorrhizae that can be added:
 	- Serendipita sp. 411 https://mycocosm.jgi.doe.gov/Ser411_1/Ser411_1.home.html
 
 
-
+Going with 70-80% Fungi, 20-30% Bacteria/Archaea and 0.5-2% Plasmids/Circular DNA/Virus
 
 - Less than 100 genomes.
 - Benchmark Rafaels pipeline
