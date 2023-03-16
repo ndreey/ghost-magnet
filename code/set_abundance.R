@@ -1,20 +1,40 @@
-host
-1-host
+# set the seed for reproducibility
+set.seed(13371337)
+# Host abundance will vary
+host_ab <- 0.5
 
-SPLIT BETWEEN ENDOIPHYTES
-OMF1 1
-OMF2 1
-OMF3 1
+# The adjust factor
+adj_factor <- 1-host_ab
+
+# Ratio of endophytes
+ratio <- list(OMF = 0.452, rfungi = 0.226, bark = 0.297, plasm = 0.025)
+
+# Subset 
+
+# Expected amount of unique species.
+i <- 30 # minimum length of vector
+j <- 40 # maximum length of vector
+
+# generate a random integer between i and j
+n <- sample(i:j, size = 1) 
+
+# Generate a random subset of n genomes
+set_genomes <- mock_df[mock_df$group == "bark", 1]
+n_subset <- sample(set_genomes, n)
+
+# generate a vector of n random numbers between 0 and 1
+x <- runif(n, 0, 1) 
+
+# normalize the vector so that its sum is 0.229
+nrm_x <- 0.229 * x / sum(x)
+
+# check that the sum of the elements is approximately 0.229
+sum(nrm_x)
 
 
 
-rfungi 31
-PRJ18505*0.5size + PRJ122*6.5size.+.+.= 29.7%
 
 
-
-bark   35 
-plasm  30
 
 ###############################################################
 datasize = 10gb

@@ -175,7 +175,7 @@ mock_df <- rbind(df_host, df_fungi, df_bacteria, df_plasmids)
 # Create new rownames
 rownames(mock_df) <- NULL
 
-groups <- list(c("fungi", "OMF"), c("bacteria", "archaea"), "host")
+groups <- list(c("rfungi", "OMF"), c("bacteria", "archaea"), "host")
 
 # Extend grouping with group column
 mock_df$group <- ifelse(mock_df$rank %in% groups[[1]], "fungi",
