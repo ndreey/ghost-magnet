@@ -39,14 +39,7 @@ set_abundance <- function(host_ab, community_size, proportion) {
 }
 
 
-# Test
 
-# proportion of endophytes
-proportion <- list(OMF = 0.452, rfungi = 0.226, bark = 0.297, plasm = 0.025)
-
-omfs <- mock_df[mock_df$rank == "OMF",1]
-
-test <- set_abundance(host_ab = 0.5, community_size = length(omfs), 1)
 
 
 

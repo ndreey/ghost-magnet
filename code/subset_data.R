@@ -55,8 +55,12 @@ omf_df <- data.frame(genome_id = omf_genomes, taxid = omf_taxid)
 # Append the new data to the existing data frame
 df_fungi <- rbind(df_fungi, omf_df)
 
-# Lets add "OMF" as rank to the omf_genomes and "fungi" to the remaing
-df_fungi$rank <- c(rep("rfungi", 31), rep("OMF",3))
+# Give each fungal genome the rank fungi
+df_fungi$rank <- rep("fungi", nrow(df_fungi))
+
+# Group the fungi to rhizosphere fungi (rfungi) and OMF
+df_fungi$group <- c(rep("rfungi", 31), rep("OMF",3))
+
 
 # Add the genome sizes
 fungi_size <- get_size(df_fungi$genome_id, genome_size)
@@ -79,11 +83,14 @@ colnames(plasmids) <- c("genome_id", "taxid", "rank")
 # Subsets 369 genomes randomly
 plasmid_subset <- sample(plasmids$genome_id, 369)
 
-# Subsets the 50 plasmids
+# Subsets the 30 plasmids
 df_plasmids <- plasmids[!(plasmids$genome_id %in% plasmid_subset),]
 
 # Remove the ".fasta" suffix
 df_plasmids$genome_id <- gsub(".fasta", "", df_plasmids$genome_id)
+
+# Group the genomes 
+df_plasmids$group <- rep("pl_vi_unk", nrow(df_plasmids))
 
 # Add the genome sizes
 plasmid_size <- get_size(df_plasmids$genome_id, genome_size)
@@ -91,11 +98,10 @@ df_plasmids$size <- plasmid_size
 
 
 
-# Correction: reference.tsv hold both bacterial and archaea!
 ######################## BACTERIA / ARCHAEA ####################################
-# I want to subset 35 genomes from the ~440 bacterial genomes 
+# I want to subset 35 genomes from the ~400 genomes 
 # 
-# reference.tsv holds info on 417 bacterial genomes.
+# reference.tsv holds info on 417 bacteria/archaea genomes.
 # They are grouped as:"known_strain", "new_species", "new_strain", "new_genus",
 # "new_order", "new_family"  
 # I will take a subset from the 231 "known_strains"
@@ -111,40 +117,15 @@ bact_subset <- sample(reference[reference$category == "known_strain",]$ref, 35)
 
 # Subset to only keep the 35 chosen and remove third column as it is not needed.
 df_bacteria <- reference[(reference$ref %in% bact_subset),-3]
-
-# Add the genome sizes
-bact_size <- get_size(df_bacteria$ref, genome_size)
-
-# Sort out df to match the structure of the others.
-# Load file to get genome ids from ref
-#genome_to_id <- read.table("camisim_setup_files/genome_to_id.tsv", 
-#                           header = FALSE, sep = "\t")
-#colnames(genome_to_id) = c("genome_id", "path")
-#
-# Get the row where ref matches path in genome_to_id and add it to vector.
-# bact_ids <- vector()
-#
-#for (ref in df_bacteria$ref) {
-#  row_idx <- grep(ref, genome_to_id[,2])
-#  bact_ids <- c(bact_ids, genome_to_id$genome_id[row_idx])
-#}
-
-# Structure dataframe to resemble the others.
-#df_bacteria$genome_id <- bact_ids
-df_bacteria$genome_id <- df_bacteria$ref
-df_bacteria$rank <- rep("bacteria", 35)
-df_bacteria <- df_bacteria[, c("genome_id", "taxid", "rank")]
-df_bacteria$size <- bact_size
+rownames(df_bacteria) <- NULL
 
 
-###                                                                       ###
-###   CHECK IF REFERENCE SUBSET IS 100% BACTERIA, CAN BE ARCHAEA AS WELL  ###
-###                                                                       ###
-
+# Lets check what ranks each taxid has by using the taxonomic profile.
 # taxonomic profile file to get taxonomic group IDs
 taxonomic_profile <- read.table("camisim_setup_files/taxonomic_profile_1.txt", 
                                 header = FALSE, sep = "\t", skip = 5)
 
+archaea_taxids <- vector()
 # Lets see if the taxid matches any taxid where the row has "Archaea"
 for (taxid in df_bacteria$taxid) {
   get_match <- grep(taxid,taxonomic_profile$V1[grep("Archaea",
@@ -153,36 +134,42 @@ for (taxid in df_bacteria$taxid) {
   # When grep find nothing it returns interger(0). Thus, any value where length
   # is not 0 means that there has been a match
   if (length(get_match) != 0) {
-    cat("Taxid:", taxid, "is Archaea")
+    archaea_taxids <- c(archaea_taxids, taxid)
   }
 }
 
-# Taxid: 456442 is Archaea
-# Thus, reference.tsv holds bacteria and archaea.
-# Replace the rank value with archaea.
-df_bacteria$rank <- ifelse(df_bacteria$taxid == 456442, "archaea",
-                           df_bacteria$rank)
+# Set each taxids rank
+df_bacteria$rank <- ifelse(df_bacteria$taxid %in% archaea_taxids, "archaea",
+                           "bacteria")
+
+# Lets group this community
+df_bacteria$group <- rep("ba_ar", nrow(df_bacteria))
+
+# Structure the data frame
+df_bacteria <- df_bacteria[, c("ref", "taxid", "rank", "group")]
+colnames(df_bacteria)[1] <- "genome_id" 
+
+# Add the genome sizes
+bact_size <- get_size(df_bacteria$genome_id, genome_size)
+df_bacteria$size <- bact_size
+
+
 
 
 ######################## BUILD MOCK DATAFRAME ###################################
 
 # Host
-df_host <- data.frame(genome_id = "Platanthera_zijinensis_chr",
-                        taxid = 2320716, rank = "host", size = 4186550321)
+df_host <- data.frame(genome_id = "Platanthera_zijinensis_chr", taxid = 2320716,
+                      rank = "orchid", group = "host", size = 4186550321)
+
 # Bind together the subsets
 mock_df <- rbind(df_host, df_fungi, df_bacteria, df_plasmids)
 
 # Create new rownames
 rownames(mock_df) <- NULL
 
-groups <- list(c("rfungi", "OMF"), c("bacteria", "archaea"), "host")
-
-# Extend grouping with group column
-mock_df$group <- ifelse(mock_df$rank %in% groups[[1]], "fungi",
-                        ifelse(mock_df$rank %in% groups[[2]], "bark",
-                               ifelse(mock_df$rank %in% groups[[3]], "host", "plasm")))
-
-
+# Final structure
+mock_df <- mock_df[, c("genome_id", "rank", "taxid", "group", "size")]
 
 # Write to txt.
 #write.table(mock_df, file = "mock_genomes.txt", sep = "\t", row.names = FALSE, 
