@@ -1,19 +1,26 @@
-# Subset source_genomes from CAMI2 rhizosphere mock data
-#
+################################################################################
+######      Subset source_genomes from CAMI2 rhizosphere mock data        ######
+################################################################################
 
+############################# FUNCTIONS ########################################
 get_size <- function(genome_ids,size_report) {
-  
+  # Gets the size of the genome
+  # 
+  # Args:
+  #   genome_ids: Vector of genome ids
+  #   size_report: report_genome_size.tsv dataframe
+  # 
+  # Returns:
+  #   Numeric vector with the sizes.
   sizes <- vector()
   for (id in genome_ids) {
-    
     sizes <- c(sizes, size_report[grep(id, size_report$genome), 2])
-    
   }
-  
   return(sizes)
 }
 
 
+############################## UTILITIES #######################################
 # set the seed for reproducibility
 set.seed(13371337)
 
@@ -23,7 +30,7 @@ genome_size <- read.table("camisim_setup_files/report_genome_sizes.tsv",
 
 
 
-######################## FUNGAL GENOMES ###############################
+########################## FUNGAL GENOMES ######################################
 # Grabs the subset of fungal genomes.
 fungal_genomes <- read.table("camisim_setup_files/fungal_genomes.txt",
                              header = FALSE, sep = "\t")
@@ -49,7 +56,7 @@ omf_df <- data.frame(genome_id = omf_genomes, taxid = omf_taxid)
 df_fungi <- rbind(df_fungi, omf_df)
 
 # Lets add "OMF" as rank to the omf_genomes and "fungi" to the remaing
-df_fungi$rank <- c(rep("fungi", 31), rep("OMF",3))
+df_fungi$rank <- c(rep("rfungi", 31), rep("OMF",3))
 
 # Add the genome sizes
 fungi_size <- get_size(df_fungi$genome_id, genome_size)
@@ -57,7 +64,7 @@ df_fungi$size <- fungi_size
 
 
 
-######################## PLASMID GENOMES ###############################
+########################### PLASMID/VIRUS/UNKNOWN ##############################
 # 399 genomes/contigs with four columns, we only need the first two cols which
 # represents filename and taxid.
 
@@ -68,8 +75,8 @@ plasmids <- read.table("camisim_setup_files/plasmids.tsv",
 plasmids <- plasmids[,-3]
 colnames(plasmids) <- c("genome_id", "taxid", "rank")
 
-# We dont need 399 of these genomes. Lets reduce it. 399 - 349 = 30
-# Subsets 349 genomes randomly
+# We dont need 399 of these genomes. Lets reduce it. 399 - 369 = 30
+# Subsets 369 genomes randomly
 plasmid_subset <- sample(plasmids$genome_id, 369)
 
 # Subsets the 50 plasmids
@@ -85,7 +92,7 @@ df_plasmids$size <- plasmid_size
 
 
 # Correction: reference.tsv hold both bacterial and archaea!
-######################## BACTERIAL GENOMES ###############################
+######################## BACTERIA / ARCHAEA ####################################
 # I want to subset 35 genomes from the ~440 bacterial genomes 
 # 
 # reference.tsv holds info on 417 bacterial genomes.
@@ -168,9 +175,18 @@ mock_df <- rbind(df_host, df_fungi, df_bacteria, df_plasmids)
 # Create new rownames
 rownames(mock_df) <- NULL
 
+groups <- list(c("fungi", "OMF"), c("bacteria", "archaea"), "host")
+
+# Extend grouping with group column
+mock_df$group <- ifelse(mock_df$rank %in% groups[[1]], "fungi",
+                        ifelse(mock_df$rank %in% groups[[2]], "bark",
+                               ifelse(mock_df$rank %in% groups[[3]], "host", "plasm")))
+
+
+
 # Write to txt.
-write.table(mock_df, file = "mock_genomes.txt", sep = "\t", row.names = FALSE, 
-            col.names = TRUE)
+#write.table(mock_df, file = "mock_genomes.txt", sep = "\t", row.names = FALSE, 
+#            col.names = TRUE)
 
 
 
