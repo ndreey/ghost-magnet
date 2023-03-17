@@ -4,11 +4,11 @@ set.seed(13371337)
 set_abundance <- function(host_ab, community_size, proportion) {
   # Generates relative abundance adjusted for host-contamination
   # 
-  # The expected proportion is adjusted to the proportion of host-contamination.
-  # A set of abundances are generated based on the community size and the 
-  # adjusted proportion of the community. The sum of the generated abundances 
-  # for each community member will be equivalent to the adjusted proportion of
-  # the community.
+  # The expected proportion of the community is adjusted to account for the 
+  # proportion of host-contamination. Then, a set of abundance values is 
+  # generated based on the community size and the adjusted proportion. These 
+  # abundance values are such that the sum of abundances for each community 
+  # member will add up to the adjusted proportion of the community.
   # 
   # Args:
   #   host_ab: The proportion of host-contamination in decimal form (float).
