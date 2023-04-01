@@ -13,7 +13,7 @@ Dendrobium catenatum reference genome size: 1.01 Gb  (https://www.nature.com/a
 
 I01_PBL_10_1.fq.gz
 - wc -l: 111237828
-- 111237828 / 4 = 27809457
+- 111237828 / 4 = 27809457 
 - depth = (27809457 * 150) / (4.15 * 10^9) = 1x
 
 I13_PC_7_1.fq.gz
