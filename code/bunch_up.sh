@@ -7,13 +7,13 @@ do
   name=$(basename "$file" .fq.gz)
   
   # Concatenate the contents of the current file to the output file
-  zcat "$file" >> 1_hc_raw_reads.fq
+  zcat "$file" >> 0.8_hc_raw_reads.fq
   
   echo "Processed $name"
 done
 
 # Compress the output file with gzip
 echo "Compressing bunch up"
-pigz -p 6 -c 1_hc_raw_reads.fq > 1_hc_raw_reads.fq.gz
+pigz -p 6 -c 0.8_hc_raw_reads.fq > 0.8_hc_raw_reads.fq.gz
 
 echo "Done!"
