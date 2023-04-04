@@ -37,14 +37,3 @@ set_abundance <- function(host_ab, community_size, proportion) {
   return(nrm_abu)
   
 }
-
-
-
-
-
-
-
-
-
-
-
