@@ -2,29 +2,30 @@
 # community design. It combines set_abundance.R and write_abundance_tsv.R + it
 # adjusts for each genomes genome size.
 
+set.seed(13371337)
 
 # Load in mock_df
 mock_df <- read.table("submission/mock_genomes.txt", 
                       header = TRUE, sep = "\t")
 
 # The amount of bp CAMISIM is set to generate
-seq_target<- 5e9
+seq_target<- 1e9
 
-# Host genome soze
+# Host genome size
 host_size <- 4186550321
 
 # proportion of endophytes
 proportion <- list(rfungi = 0.226, OMF = 0.452, ba_ar = 0.297, pl_vi_unk = 0.025)
 
 # proportion of host-contamination
-host_contamination <- c(0, 0.5, 0.8, 0.95, 0.98)
+host_contamination <- c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95)
 
 
 # Write abundance.tsv files for each HC level.
-for (host_abu in host_contamination){
+for (hc in host_contamination){
   
   # Adjusts the proportion based on host size
-  adj_host <- (seq_target*host_abu) / host_size
+  adj_host <- (seq_target*hc) / host_size
   
   # Vector holding relative abundance for all genomes
   relative_abundance <- c(adj_host)
@@ -37,7 +38,7 @@ for (host_abu in host_contamination){
     adj_factor <- 1 - hc
     
     # Endophyte sequence size
-    endo_seq <- seq_size * adj_factor
+    endo_seq <- seq_target * adj_factor
     
     # Gets the subset of mock_df representing group
     group_set <- mock_df[mock_df$group == group,1]
@@ -74,10 +75,10 @@ for (host_abu in host_contamination){
   abu_df <- data.frame(mock_df[,1], relative_abundance )
   
   # Generates unique filenames
-  filename <- paste0(host_abu,"_hc_abundance.tsv")
+  filename <- paste0(hc,"_hc_abundance.tsv")
   
   # Write to .tsv
   write.table(abu_df, file = filename, sep = "\t", row.names = FALSE,
-              col.names = FALSE)
+              col.names = FALSE, quote = FALSE)
 
 }
