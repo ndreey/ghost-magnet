@@ -2,13 +2,14 @@
 # community design. It combines set_abundance.R and write_abundance_tsv.R + it
 # adjusts for each genomes genome size.
 
+set.seed(13371337)
 
 # Load in mock_df
 mock_df <- read.table("submission/mock_genomes.txt", 
                       header = TRUE, sep = "\t")
 
 # The amount of bp CAMISIM is set to generate
-seq_target<- 0.5e9
+seq_target<- 1e9
 
 # Host genome size
 host_size <- 4186550321
@@ -17,7 +18,7 @@ host_size <- 4186550321
 proportion <- list(rfungi = 0.226, OMF = 0.452, ba_ar = 0.297, pl_vi_unk = 0.025)
 
 # proportion of host-contamination
-host_contamination <- c(0, 0.5, 0.8, 0.95, 0.98)
+host_contamination <- c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95)
 
 
 # Write abundance.tsv files for each HC level.
