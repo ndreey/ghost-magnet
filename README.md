@@ -1,3 +1,12 @@
+# GHOST-MAGNET
+surroGate HOST Metagenome-Assembled Genome decoNtamination for non-modEl hosTs
+
+
+
+
+![workflow_final2](https://github.com/ndreey/ghost-magnet/assets/72344166/764b5951-d6f6-4fd3-b9e5-f56642bf4cf0)
+
+
 # Evaluation of Host Contamination Removal Post Sequencing
 
 This repository contains the code and data for my BSc thesis project in Molecular Bioinformatics at the University of Skövde. The project evaluated the removal of host contamination post sequencing of non-model organisms.
