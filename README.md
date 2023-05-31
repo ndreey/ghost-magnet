@@ -1,6 +1,6 @@
 # GHOST-MAGNET
-surroGate HOST Metagenome-Assembled Genome decoNtamination for non-modEl hosTs
-
+## Excuse the mess
+Untill the completion of the project the repository will be messy with undocumented files and folders. A thorough clean up of files and structures will be commenced towards the end of the project.
 
 
 
@@ -56,5 +56,4 @@ With the GitHub repository, the project will also align with the FAIR principles
 Finally, with the use of the issue feature on GitHub, one can track, report and resolve problems or tasks related to the project. The feature is helpful for collaborative development, where multiple contributors are involved in different aspects. Nonetheless
 
 
-## Excuse the mess
-Untill the completion of the project the repository will be messy with undocumented files and folders. A thorough clean up of files and structures will be commenced before the end of project.
+
