@@ -1,6 +1,7 @@
 # GHOST-MAGNET
 ## Excuse the mess
 Untill the completion of the project the repository will be messy with undocumented files and folders. A thorough clean up of files and structures will be commenced towards the end of the project.
+However, the `Issues` page can be seen as a journal, to learn more about the thought process for each decision.
 
 
 
