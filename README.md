@@ -18,6 +18,10 @@ The aim of this project was two-fold:
 1. To determine how different levels of host contamination affects assembly and genome binning, and whether a significant correlation exists.
 2. To evaluate if removal of reads mapping to host bins is a valid method for host contamination depletion post sequencing.
 
+
+![image](https://github.com/ndreey/ghost-magnet/assets/72344166/234b0e6f-b582-441b-99f0-809a2b30d2e7)
+
+
 ## Study Design
 
 This project is an exploratory study that aims to determine if the method of host contamination removal has validity and should be explored further to generate a package/program that classifies and removes host bins, and re-runs metagenomic analysis.
